@@ -6,22 +6,38 @@ function unpack(rows, index) {
     });
 }
 
+// create a function to find unique data
+function uniq_fast(a) {
+    var seen = {};
+    var out = [];
+    var len = a.length;
+    var j = 0;
+    for(var i = 0; i < len; i++) {
+         var item = a[i];
+         if(seen[item] !== 1) {
+               seen[item] = 1;
+               out[j++] = item;
+         }
+    }
+    return out;
+}
 
 // read data, collect ids, and load the ids into the dropdown  //
 
-d3.json("samples.json").then(function (data) {
-    var ids = unpack(data.metadata, "id");
+d3.csv("data/2020_promo_items_all.csv").then(function (data) {
+    console.log (data)
+    var ids = unpack(data, "brand");
+    var uniq_ids = uniq_fast(ids);
+    console.log(uniq_ids);
     d3.select("#selDataset")
         .selectAll("select")
-        .data(ids)
+        .data(uniq_ids)
         .enter()
         .append("option")
         .html(function (d) {
             return `<option value ="${d}">${d}</option>`;
         });
 
-
-    console.log(data);
     updatePlotly();
 });
 
@@ -30,7 +46,7 @@ d3.json("samples.json").then(function (data) {
 
 
 
-// ----------------------------------------------------  //
+// // ----------------------------------------------------  //
 
 // Create and Call function:  updatePlotly() when a change takes place to the DOM //
 
@@ -48,18 +64,19 @@ function updatePlotly() {
     // ----------------------------------------------------  //
     //  Pull data for the id selected in the dropdown //
 
-    d3.json("samples.json").then((data) => {
-        var person_id = data.samples.find(({ id }) => id === dataset);
-        console.log(person_id);
+    d3.csv("data/2020_promo_items_all.csv").then((data) => {
+        var brand_data = data.find(({ brand }) => brand === dataset);
+        console.log(brand_data);
         // store the top 10 values for the bar chart
-        var otu_ids_sliced = person_id.otu_ids.slice(0, 10);
+        var brand_sliced = person_id.otu_ids.slice(0, 10);
+        
         console.log(otu_ids_sliced);
 
         var values_sliced = person_id.sample_values.slice(0, 10);
         console.log(values_sliced);
 
         var labels_sliced = person_id.otu_labels.slice(0, 10);
-        // console.log(labels_sliced);
+        console.log(labels_sliced);
 
 
 

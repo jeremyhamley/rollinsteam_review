@@ -45,6 +45,7 @@ d3.csv("data/2020_rollins_loc_sum.csv").then(function(data) {
         }
         
         var branchLocs = [data[i].lat,data[i].lon]
+        
 
         // Add circles to map
         // console.log(data[i].TOTALACRES);

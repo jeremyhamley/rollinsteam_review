@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Rollins Team 2020 Review</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
@@ -47,9 +47,32 @@
 
     <div class="container-fluid m-1" style="margin-top: 50px; margin-left: 20px;">
         <div class="row mb-4">
-            <div class="col-md-9">
-
+            <div class="col-md-2">
+                <div class="well">
+                    <h5>select Brand</h5>
+                    <select id="selDataset"></select>
+                </div>
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">Brand Stats</h4>
+                    </div>
+                    <div id="sample-metadata" class="panel-body"></div>
+                </div>
             </div>
+
+
+
+
+
+            <div class="col-md-5">
+                <div id="bar"></div>
+            </div>
+            <div class="col-md-2">
+                <div id="gauge"></div>
+            </div>
+
+            <img src="images/comingsoon.PNG"class="img-fluid" alt="Coming Soon">
+
             <div class="col-sm-6 col-md-3 ml-auto">
 
                 <aside class="sidebar">
@@ -95,6 +118,11 @@
             </div>
         </div>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="js/branch.js"></script>
+
 
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
